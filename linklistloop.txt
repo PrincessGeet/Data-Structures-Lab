@@ -1,0 +1,107 @@
+package geetali;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Student
+ */
+class nodes //creating node
+{
+    int data;
+    node link;
+    
+
+nodes(int d)
+{
+data=d;
+link=null;
+}
+}
+public class loops {
+    node head,currptr;
+    loops() //constructor
+    {
+        head=null;
+    } 
+    
+     public void insert(int d)
+    {
+        node newnode=new node(d);
+        newnode.data=d;
+        newnode.link=null;
+        if(head==null)
+        {
+            head=newnode;
+        }
+        else
+        {
+            currptr=head;
+            while(currptr.link!=null)
+            {
+            currptr=currptr.link;
+            }
+            currptr.link=newnode;
+        }
+       
+    }
+     
+       
+    public void display()
+    {
+        node currptr=head;
+        if(head==null)
+        {
+            System.out.print("Empty List ");
+            return;
+        }
+        while(currptr!=null)
+        {
+        System.out.print(currptr.data + " " );
+        currptr=currptr.link;
+        }
+        System.out.println( );
+    }
+    
+    
+     public static void main(String args[])
+    {
+        int i,choice;
+        char ch;
+        Scanner sc=new Scanner(System.in);
+        loop li=new loop();
+        do
+        {
+            
+        System.out.println("1. Insert ");
+        System.out.println("2. Display ");
+       
+        System.out.print(" Enter Your Appropriate Option  ");
+        choice=sc.nextInt();
+      
+        
+        switch(choice)
+        {
+            case 1:
+                System.out.print("Enter How many elements you want to enter : ");
+                int n=sc.nextInt();
+                System.out.println("Enter the Data : ");
+                for(i=0;i<n;i++)
+                 {
+                  li.insert(sc.nextInt());
+                   }
+                break;
+            case 2:
+                li.display();
+                break;
+         
+            default:
+                System.out.print("Invalid ");
+        }
+        System.out.println("\n\n Do you Want to continue(Y/N)");
+         ch=sc.next().charAt(0);       
+        }
+        while(ch=='Y'||ch=='y');
+       
+    }  
+}

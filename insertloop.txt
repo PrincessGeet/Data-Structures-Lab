@@ -1,0 +1,123 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package geetali;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Student
+ */
+class node //creating node
+{
+    int data;
+    node link;
+    
+
+node(int d)
+{
+data=d;
+link=null;
+}
+}
+
+
+
+public class loop {
+   node head,currptr;
+    loop() //constructor
+    {
+        head=null;
+    } 
+    
+     public void insert(int d)
+    {
+        node newnode=new node(d);
+        newnode.data=d;
+        newnode.link=null;
+        if(head==null)
+        {
+            head=newnode;
+        }
+        else
+        {
+            currptr=head;
+            while(currptr.link!=null)
+            {
+            currptr=currptr.link;
+            }
+            currptr.link=newnode;
+        }
+       
+    }
+     
+       
+    public void display()
+    {
+        node currptr=head;
+        if(head==null)
+        {
+            System.out.print("Empty List ");
+            return;
+        }
+        while(currptr!=null)
+        {
+        System.out.print(currptr.data + " " );
+        currptr=currptr.link;
+        }
+        System.out.println( );
+    }
+    
+//    public node insertloop( node head_ref , int k)
+//    {
+//        node temp=head_ref;
+//        int count=1;
+//        while(count< k)
+//        {
+//            temp=temp.link;
+//            count++;
+//        }
+//        node joint=temp;
+//        while (temp.link != null)  
+//        temp = temp.link;  
+//        temp.link = joint;  
+//        return head_ref;
+//    }
+    
+    public void findloop(node head) {
+    node slow, fast;
+    slow = fast = head;
+   
+    if(slow!=null && fast!=null && fast.link!=null) 
+    {
+        
+        slow = slow.link;
+        fast  = fast.link.link;
+        if (slow == fast) 
+        {
+           System.out.print("Linked List contains a loop\n");
+
+        }
+    }
+    System.out.print("No Loop in Linked List\n");
+    }
+    public void remove()
+    {
+        
+    }
+    
+     public static void main(String args[])
+    {
+        int i,choice;
+        char ch;
+        Scanner sc=new Scanner(System.in);
+        loop li=new loop();
+        
+        
+       
+        
+}
+}
