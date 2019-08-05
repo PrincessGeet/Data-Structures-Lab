@@ -1,0 +1,157 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package geetali;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Student
+ */
+
+class node//creating node
+{
+    int data;
+    node link;
+    
+
+node(int d)
+{
+data=d;
+link=null;
+}
+}
+
+
+
+    
+public class rotatelink {
+    
+    node head,currptr;
+    rotatelink() //constructor
+    {
+        head=null;
+    } 
+    
+     public void insert(int d)
+    {
+        node newnode=new node(d);
+        newnode.data=d;
+        newnode.link=null;
+        if(head==null)
+        {
+            head=newnode;
+        }
+        else
+        {
+            currptr=head;
+            while(currptr.link!=null)
+            {
+            currptr=currptr.link;
+            }
+            currptr.link=newnode;
+        }
+       
+    }
+     
+
+
+    public void display()
+    {
+        node currptr=head;
+        if(head==null)
+        {
+            System.out.print("Empty List ");
+            return;
+        }
+        while(currptr!=null)
+        {
+        System.out.print(currptr.data + " " );
+        currptr=currptr.link;
+        }
+        System.out.println( );
+    }
+    
+
+    public void rotate(int k)
+    {
+        
+       if (k == 0)
+        return; 
+        node current  = head; 
+        int count = 0; 
+        while (count<k && current!= null) 
+        { 
+            current = current.link; 
+            count++; 
+        } 
+  
+        if (current==null) 
+            return; 
+        node kthNode = current; 
+        while (current.link!= null) 
+            current = current.link; 
+            current.link= head; 
+            head = kthNode.link;
+            kthNode.link= null; 
+         System.out.print("\n Rotation Done : ");
+         display();
+         
+        } 
+        
+
+
+         public static void main(String args[])
+         {
+        int i,choice;
+        char ch;
+        Scanner sc=new Scanner(System.in);
+        rotatelink li=new rotatelink();
+        do
+        {
+            
+        System.out.println("1. Insert ");
+        System.out.println("2. Display ");
+        System.out.println("3. Rotate ");
+        System.out.print(" Enter Your Appropriate Option : ");
+        choice=sc.nextInt();
+      
+        
+        switch(choice)
+        {
+            case 1:
+                System.out.print("Enter How many elements you want to enter : ");
+                int n=sc.nextInt();
+                System.out.println("Enter the Data : ");
+                for(i=0;i<n;i++)
+                 {
+                  li.insert(sc.nextInt());
+                   }
+                break;
+            case 2:
+                li.display();
+                break;
+            case 3:
+                System.out.print("Enter Kth place to rotate : ");
+                int k=sc.nextInt();
+                li.rotate(k);
+                break;
+           
+                
+            default:
+                System.out.print("Invalid ");
+        }
+        System.out.print ("\n\n Do you Want to continue(Y/N)\n");
+         ch=sc.next().charAt(0);       
+        }
+        
+        while(ch=='Y'||ch=='y');
+       
+    }  
+}
+
+    
+
