@@ -1,0 +1,152 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package geetali;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Student
+ */
+ class Node { 
+        int key; 
+        Node left, right; 
+        public Node(int ele) { 
+            key = ele; 
+            left = right = null; 
+        }    
+ }
+   
+public class binarysearchtree {
+    binarysearchtree()
+    {
+        root=null;
+    }
+    Node root;
+    public void insert(int key) 
+        { 
+       root = insertRec(root, key); 
+        } 
+     
+       Node insertRec(Node root, int key) 
+       { 
+        if (root == null) { 
+            root = new Node(key); 
+            return root; 
+        }
+        if (key < root.key) 
+            root.left = insertRec(root.left, key); 
+        else if (key > root.key) 
+            root.right = insertRec(root.right, key); 
+        return root; 
+    } 
+       
+       public void inorder()  { 
+           if(root==null)
+           {
+            System.out.println("No Elements present in the tree ");   
+           }
+           else{
+       System.out.println("Elements in tree are : ");
+       inorderRec(root); 
+    } 
+       }
+    public void inorderRec(Node root) { 
+        if (root != null) { 
+            
+            inorderRec(root.left);
+            System.out.println(root.key); 
+            inorderRec(root.right); 
+        }
+        } 
+   
+    
+     public void delete(int key) 
+    { 
+    
+        root = deleteRec(root, key); 
+    }
+
+    Node deleteRec(Node root, int key) 
+    { 
+        if (root == null)  
+            return root; 
+        if (key < root.key) 
+            root.left = deleteRec(root.left, key); 
+        else if (key > root.key) 
+            root.right = deleteRec(root.right, key); 
+        else
+        { 
+            if (root.left == null) 
+                return root.right; 
+            else if (root.right == null) 
+                return root.left; 
+            root.key = minValue(root.right); 
+            root.right = deleteRec(root.right, root.key); 
+        } 
+  
+        return root; 
+    }  
+    int minValue(Node root) 
+    { 
+        int minv = root.key; 
+        while (root.left != null) 
+        { 
+            minv = root.left.key; 
+            root = root.left; 
+        } 
+        return minv; 
+    } 
+    
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        binarysearchtree binary= new binarysearchtree();
+         int i,choice;
+        char ch;
+        do
+        {
+            
+        System.out.println("1. Insert ");
+        System.out.println("2. Display ");
+        System.out.println("3. Delete ");
+        System.out.print(" Enter Your Appropriate Option  ");
+        choice=sc.nextInt();
+      
+        
+        switch(choice)
+        {
+            case 1:
+                System.out.print("Enter How many elements you want to enter : ");
+                int n=sc.nextInt();
+                System.out.println("Enter the Data : ");
+                for(i=0;i<n;i++)
+                 {
+                  binary.insert(sc.nextInt());
+                   }
+                break;
+            case 2:
+                binary.inorder();
+               break;
+            case 3:
+                System.out.print("Enter the element to be deleted : ");
+                binary.delete(sc.nextInt());
+                break;
+         
+            default:
+                System.out.print("Invalid ");
+        }
+        System.out.println("\n\n Do you Want to continue(Y/N)");
+         ch=sc.next().charAt(0);       
+        }
+        while(ch=='Y'||ch=='y');
+       
+    }  
+    }
+    
+    
+    
+
