@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package geet;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Student
+ */
+class HashCode
+{
+    int freq;
+    char c;
+    HashCode llink;
+    HashCode rlink;
+
+HashCode(char chr,int val)
+{
+ c=chr;
+ freq=val;
+ llink=null;
+ rlink=null;
+}
+
+    
+}
+
+public class Huffman {
+    public static void main(String args[])
+    {
+        int i,l;
+        char p;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the String : ");
+        String a=sc.nextLine();
+        String lower = a.toLowerCase();
+        HashCode h=new HashCode();
+        
+        //System.out.print("Word/Name in Lowercase : " + lower);
+        HashMap<Character,Integer> ke = new HashMap<>();
+        for(i=0;i<lower.length();i++)
+        {
+            p=a.charAt(i);
+            if(ke.containsKey(p))
+            {
+                l=ke.get(p);
+                l=l+1;
+                ke.put(p, l);
+            }
+            else
+            {
+                ke.put(p, 1);
+            }
+        }
+//        set<Map.Entry<Character,Integer>sp=
+        PriorityQueue<HashCode> pq=new PriorityQueue<>();
+        pq.add(h);
+        
+        
+        
+    }
+}
+
